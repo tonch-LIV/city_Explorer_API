@@ -23,4 +23,6 @@ backend repo for city explorer
     - implemented port selection from `.env`
     - started app `app.listen`.
     - verified message.
+  - imported weather data from `./data/weather.json`; ran and tested output.
+  - added `/weather` route and created a search query function to search city's weather.
   - 
