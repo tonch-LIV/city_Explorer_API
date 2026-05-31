@@ -31,8 +31,23 @@ app.get('/weather', (request, response) => {
     return city.city_name.toLowerCase() === searchQuery.toLowerCase();
   });
 
+  // error handling
+  if (!city) {
+    response.status(404).send({
+      error: `No weather data found for ${searchQuery}.`
+    });
+    return;
+  }
+
   const formattedWeather = city.data.map(day => new Forecast(day));
   response.send(formattedWeather);
+});
+
+// generic error handle
+app.use((error, request, response, next) => {
+  response.status(500).send({
+    error: `Something went wrong on our server.`
+  });
 });
 
 // starts server and 

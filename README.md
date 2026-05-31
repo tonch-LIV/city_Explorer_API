@@ -26,4 +26,5 @@ backend repo for city explorer
   - imported weather data from `./data/weather.json`; ran and tested output.
   - added `/weather` route and created a search query function to search city's weather.
   - created `Forecast` class and updated `/weather` route response in `server.js`.
-  - 
+  - added error message `!city` based on status code (404) and generic response for (500).
+  - created `Weather.jsx` in frontend/ `city_Explorer`.
