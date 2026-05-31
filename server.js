@@ -13,6 +13,16 @@ app.use(cors());  // turns on CORS
 
 const PORT = process.env.PORT || 3001;
 
+class Forecast {
+  constructor(dayObj) {
+    this.date = dayObj.valid_date;
+    this.description = 
+    `Low of ${dayObj.low_temp},
+    high of ${dayObj.max_temp} with
+    ${dayObj.weather.description};`
+  }
+}
+
 // `weather` route with searchQuery
 app.get('/weather', (request, response) => {
   const { lat, lon, searchQuery } = request.query;
@@ -21,7 +31,8 @@ app.get('/weather', (request, response) => {
     return city.city_name.toLowerCase() === searchQuery.toLowerCase();
   });
 
-  response.send(city);
+  const formattedWeather = city.data.map(day => new Forecast(day));
+  response.send(formattedWeather);
 });
 
 // starts server and 
