@@ -1,2 +1,30 @@
 # city_Explorer_API
+
 backend repo for city explorer
+
+## changelog
+
+- 05.30
+  - created branch `devSetup`.
+  - created `package.json`.
+  - installed `express`, `cors`, `dotenv`; creating `package-lock.json` file node modules sub-directory.
+  - created files;
+    - `server.json`
+    - `.env`
+    - `.gitignore`
+    - `eslintrc.json`
+    - `./data/weather.json`
+  -  configured .gitignore
+  -  configured .env
+  - added `weather.json` data to file.
+  - imported packages that were installed (`express`, `cors`, `dotenv`) into `server.json`.
+    - created server `app`
+    - turned on CORS
+    - implemented port selection from `.env`
+    - started app `app.listen`.
+    - verified message.
+  - imported weather data from `./data/weather.json`; ran and tested output.
+  - added `/weather` route and created a search query function to search city's weather.
+  - created `Forecast` class and updated `/weather` route response in `server.js`.
+  - added error message `!city` based on status code (404) and generic response for (500).
+  - created `Weather.jsx` in frontend/ `city_Explorer`.
