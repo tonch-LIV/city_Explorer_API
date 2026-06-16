@@ -39,4 +39,5 @@ backend repo for city explorer
   - added a test `/movies` route on `server.js`.
   - created `Movie` class.
   - updated `/movies` route to include actual ouptut alongside `try`/`catch`.
+  - added failsafe for broke poster url images.
   - 
