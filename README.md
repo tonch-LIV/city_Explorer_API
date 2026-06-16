@@ -33,4 +33,6 @@ backend repo for city explorer
   - installed axios through terminal.
   - updated `Forecast` class with `day.datetime` syntax.
   - updated `/weather` route with `try` and `catch`.
+- 06.15
+  - cleanup of comments and redundant code blocks in  `server.js`.
   - 

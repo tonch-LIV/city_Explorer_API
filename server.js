@@ -4,9 +4,6 @@ const cors = require('cors');  // lets front and back communicate regfardless of
 const axios = require('axios');
 require('dotenv').config();  // loads env variables from .env 
 
-
-// console.log(weatherData);
-
 //  creates server
 const app = express();
 app.use(cors());  // turns on CORS
@@ -23,23 +20,11 @@ class Forecast {
 // `weather` route with lat and lon from frontend
 app.get('/weather', async (request, response, next) => {
   try {
-    const { lat, lon, searchQuery } = request.query;
+    const { lat, lon } = request.query;
 
     const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=5`;
 
     const weatherResponse = await axios.get(weatherURL);
-
-    // const city = weatherData.find(city => {
-    //   return city.city_name.toLowerCase() === searchQuery.toLowerCase();
-    // });
-
-    // // error handling
-    // if (!city) {
-    //   response.status(404).send({
-    //     error: `No weather data found for ${searchQuery}.`
-    //   });
-    //   return;
-    // }
 
     const formattedWeather = weatherResponse.data.data.map(day => new Forecast(day));
     
@@ -48,8 +33,6 @@ app.get('/weather', async (request, response, next) => {
     next(error);
   }  
 });
-
-////////////
 
 // generic error handle
 app.use((error, request, response, next) => {
@@ -60,5 +43,5 @@ app.use((error, request, response, next) => {
 
 // starts server and 
 app.listen(PORT, () => {
-  console.log(`Server is up and running on port ${PORT}`)
+  console.log(`Server is up and running on port ${PORT}`);
 });
