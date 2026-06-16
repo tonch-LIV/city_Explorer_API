@@ -35,4 +35,8 @@ backend repo for city explorer
   - updated `/weather` route with `try` and `catch`.
 - 06.15
   - cleanup of comments and redundant code blocks in  `server.js`.
+  - added `MOVIE_API_KEY` in `.env`.
+  - added a test `/movies` route on `server.js`.
+  - created `Movie` class.
+  - updated `/movies` route to include actual ouptut alongside `try`/`catch`.
   - 
