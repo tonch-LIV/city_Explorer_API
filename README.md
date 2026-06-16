@@ -28,3 +28,9 @@ backend repo for city explorer
   - created `Forecast` class and updated `/weather` route response in `server.js`.
   - added error message `!city` based on status code (404) and generic response for (500).
   - created `Weather.jsx` in frontend/ `city_Explorer`.
+- 06.14
+  - created `WEATHER_API_KEY` in `.env`.
+  - installed axios through terminal.
+  - updated `Forecast` class with `day.datetime` syntax.
+  - updated `/weather` route with `try` and `catch`.
+  - 

@@ -1,9 +1,9 @@
 // import statements equivalent
 const express = require('express');  // builds backend
 const cors = require('cors');  // lets front and back communicate regfardless of port 
+const axios = require('axios');
 require('dotenv').config();  // loads env variables from .env 
 
-const weatherData = require('./data/weather.json');
 
 // console.log(weatherData);
 
@@ -14,34 +14,42 @@ app.use(cors());  // turns on CORS
 const PORT = process.env.PORT || 3001;
 
 class Forecast {
-  constructor(dayObj) {
-    this.date = dayObj.valid_date;
-    this.description = 
-    `Low of ${dayObj.low_temp},
-    high of ${dayObj.max_temp} with
-    ${dayObj.weather.description};`
+  constructor(day) {
+    this.date = day.datetime;
+    this.description = `Low of ${day.low_temp}, high of ${day.max_temp} with ${day.weather.description};`
   }
 }
 
-// `weather` route with searchQuery
-app.get('/weather', (request, response) => {
-  const { lat, lon, searchQuery } = request.query;
+// `weather` route with lat and lon from frontend
+app.get('/weather', async (request, response, next) => {
+  try {
+    const { lat, lon, searchQuery } = request.query;
 
-  const city = weatherData.find(city => {
-    return city.city_name.toLowerCase() === searchQuery.toLowerCase();
-  });
+    const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=5`;
 
-  // error handling
-  if (!city) {
-    response.status(404).send({
-      error: `No weather data found for ${searchQuery}.`
-    });
-    return;
-  }
+    const weatherResponse = await axios.get(weatherURL);
 
-  const formattedWeather = city.data.map(day => new Forecast(day));
-  response.send(formattedWeather);
+    // const city = weatherData.find(city => {
+    //   return city.city_name.toLowerCase() === searchQuery.toLowerCase();
+    // });
+
+    // // error handling
+    // if (!city) {
+    //   response.status(404).send({
+    //     error: `No weather data found for ${searchQuery}.`
+    //   });
+    //   return;
+    // }
+
+    const formattedWeather = weatherResponse.data.data.map(day => new Forecast(day));
+    
+    response.send(formattedWeather);
+  } catch (error) {
+    next(error);
+  }  
 });
+
+////////////
 
 // generic error handle
 app.use((error, request, response, next) => {
