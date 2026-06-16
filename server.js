@@ -10,13 +10,6 @@ app.use(cors());  // turns on CORS
 
 const PORT = process.env.PORT || 3001;
 
-class Forecast {
-  constructor(day) {
-    this.date = day.datetime;
-    this.description = `Low of ${day.low_temp}, high of ${day.max_temp} with ${day.weather.description};`
-  }
-}
-
 class Movie {
   constructor(movie) {
     this.title = movie.title;
@@ -30,23 +23,6 @@ class Movie {
     this.released_on = movie.release_date;
   }
 }
-
-// `weather` route with lat and lon from frontend
-app.get('/weather', async (request, response, next) => {
-  try {
-    const { lat, lon } = request.query;
-
-    const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}&days=5`;
-
-    const weatherResponse = await axios.get(weatherURL);
-
-    const formattedWeather = weatherResponse.data.data.map(day => new Forecast(day));
-    
-    response.send(formattedWeather);
-  } catch (error) {
-    next(error);
-  }  
-});
 
 app.get('/movies', async (request, response, next) => {
   try {
