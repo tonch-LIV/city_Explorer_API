@@ -8,7 +8,7 @@ class Forecast {
   }
 }
 
-// `weather` route turned into handlerFunction with lat and lon from frontend
+// `weather` route turned into handlerFunction; uses lat and lon from frontend
 async function handleWeather(request, response, next) {
   try {
     const { lat, lon } = request.query;
