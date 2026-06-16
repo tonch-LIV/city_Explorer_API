@@ -39,8 +39,11 @@ backend repo for city explorer
   - added a test `/movies` route on `server.js`.
   - created `Movie` class.
   - updated `/movies` route to include actual ouptut alongside `try`/`catch`.
+- 06.16* (forgot to define date and changes made... think this is where it began for the day...)
   - added failsafe for broke poster url images.
   - created `weather.js`.
   - moved `Forecast` class, `/weather` into `weather.js`.
   - added `axios` to `weather.js` since it will handle make the Weatherbit requests.
   - turned `/weather` into handlerFunction and exported it; `weather.js`.
+  - imported `weather.js` into `server.js` and added route.
+  - test successful w/ cleaned 5-day forecast.

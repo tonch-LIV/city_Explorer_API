@@ -2,6 +2,7 @@
 const express = require('express');  // builds backend
 const cors = require('cors');  // lets front and back communicate regfardless of port 
 const axios = require('axios');
+const handleWeather = require('./weather');
 require('dotenv').config();  // loads env variables from .env 
 
 //  creates server
@@ -9,6 +10,8 @@ const app = express();
 app.use(cors());  // turns on CORS
 
 const PORT = process.env.PORT || 3001;
+
+app.get('/weather', handleWeather);
 
 class Movie {
   constructor(movie) {
