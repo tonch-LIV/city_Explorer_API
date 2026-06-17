@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-
 class Forecast {
   constructor(day) {
     this.date = day.datetime;
@@ -24,6 +23,5 @@ async function handleWeather(request, response, next) {
     next(error);
   }  
 }
-
 
 module.exports = handleWeather;

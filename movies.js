@@ -14,7 +14,7 @@ class Movie {
   }
 }
 
-async function handleMovies (request, response, next) {
+async function handleMovies(request, response, next) {
   try {
     const city = request.query.searchQuery;
 
@@ -28,6 +28,6 @@ async function handleMovies (request, response, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 module.exports = handleMovies;
