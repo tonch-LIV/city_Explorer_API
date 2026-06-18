@@ -1,4 +1,7 @@
 const axios = require('axios');
+const cache = require('./cache');
+
+const CACHE_DURATION = 1000 * 60 * 60;
 
 class Forecast {
   constructor(day) {
