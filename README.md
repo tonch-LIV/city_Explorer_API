@@ -55,4 +55,9 @@ backend repo for city explorer
 - 06.18
   - branched (cache) and created `cache.js`.
   - required `cache.js` in `weather.js`.
-  - added cache duration;`weather.js`.
+  - added cache duration; `weather.js`.
+  - updated `handleWeather` to account for cache ;`weather.js`.
+  - required `cache.js` in `movies.js`.
+  - added cache duration; `movies.jsx`.
+  - updated `handleMovies` to utilize cache; `movies.js`.
+  
